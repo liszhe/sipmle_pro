@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CalculationMethodsTest {
+class CalculationMathTest {
 
-    private final CalculationMethods calculationMethods = new CalculationMethods();
+    private final CalculationMath calculationMethods = new CalculationMath();
     private final long firstNumber = 5;
     private final long secondNumber = 2;
 

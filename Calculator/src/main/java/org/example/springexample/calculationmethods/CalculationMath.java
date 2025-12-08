@@ -2,7 +2,7 @@ package org.example.springexample.calculationmethods;
 
 import org.example.springexample.calculationexeptions.CalculationExceptions;
 
-public class CalculationMethods {
+public class CalculationMath {
 
     public long summation(long firstNumber, long secondNumber) {
         return Math.addExact(firstNumber, secondNumber);
