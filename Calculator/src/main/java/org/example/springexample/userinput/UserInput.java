@@ -10,7 +10,18 @@ public class UserInput {
     }
 
     public static void analyzeInput(String userInput){
-        String[] inputArray = userInput.split(" ");
-        Arrays.stream(inputArray).toList().forEach(System.out::println);
+        String[] inputArray = userInput.split("");
+        for (String symbol : inputArray){
+            checkIsBracket(symbol);
+        }
+
+
+    }
+
+    public static boolean checkIsBracket(String input){
+        if(input.contains("(")){
+            return true;
+        }
+        return false;
     }
 }
