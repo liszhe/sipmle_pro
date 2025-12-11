@@ -3,6 +3,9 @@ package org.example.springexample.userinput;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static org.example.springexample.userinput.AnalyzatorInput.checkIsBracket;
+import static org.example.springexample.userinput.AnalyzatorInput.findIdFirstBracket;
+
 public class UserInput {
     public static void input(){
         Scanner scanner = new Scanner(System.in);
@@ -10,18 +13,14 @@ public class UserInput {
     }
 
     public static void analyzeInput(String userInput){
-        String[] inputArray = userInput.split("");
-        for (String symbol : inputArray){
-            checkIsBracket(symbol);
-        }
+        String[] inputArray = userInput.replace(" ", "").split("");
+        if(checkIsBracket(inputArray)) findIdFirstBracket(inputArray);
+
 
 
     }
 
-    public static boolean checkIsBracket(String input){
-        if(input.contains("(")){
-            return true;
-        }
-        return false;
-    }
+
+
+
 }

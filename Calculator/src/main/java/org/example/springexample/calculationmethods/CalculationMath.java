@@ -4,19 +4,19 @@ import org.example.springexample.calculationexeptions.CalculationExceptions;
 
 public class CalculationMath {
 
-    public long summation(long firstNumber, long secondNumber) {
+    public static long summation(long firstNumber, long secondNumber) {
         return Math.addExact(firstNumber, secondNumber);
     }
 
-    public long subtraction(long firstNumber, long secondNumber) {
+    public static long subtraction(long firstNumber, long secondNumber) {
         return Math.subtractExact(firstNumber, secondNumber);
     }
 
-    public long multiplication(long firstNumber, long secondNumber) {
+    public static long multiplication(long firstNumber, long secondNumber) {
         return Math.multiplyExact(firstNumber, secondNumber);
     }
 
-    public float division(float firstNumber, float secondNumber) {
+    public static float division(float firstNumber, float secondNumber) {
         CalculationExceptions.checkDivisionSecondNumber(secondNumber);
         return firstNumber / secondNumber;
     }
