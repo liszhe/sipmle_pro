@@ -27,24 +27,28 @@ public class AnalyzatorInput {
 
     public static void nextMathSymbol(String[] input, int firstBracketId, int lastBracketId) {
         for (int numberSymbol = firstBracketId; numberSymbol < lastBracketId; numberSymbol++) {
-            switch (input[numberSymbol]) {
-                case "+":
-                    CalculationMath.summation(Integer.getInteger(input[numberSymbol - 1])
-                            , Integer.getInteger(input[numberSymbol + 1]));
-                    break;
-                case "-":
-                    CalculationMath.subtraction(Integer.getInteger(input[numberSymbol - 1])
-                            , Integer.getInteger(input[numberSymbol + 1]));
-                    break;
-                case "/":
-                    CalculationMath.division(Integer.getInteger(input[numberSymbol - 1])
-                            , Integer.getInteger(input[numberSymbol + 1]));
-                    break;
-                case "*":
-                    CalculationMath.multiplication(Integer.getInteger(input[numberSymbol - 1])
-                            , Integer.getInteger(input[numberSymbol + 1]));
-                    break;
-            }
+
+        }
+    }
+
+    private static void whichMathSymbol(String symbol){
+        switch (symbol) {
+            case "+":
+                CalculationMath.summation(Integer.getInteger(input[numberSymbol - 1])
+                        , Integer.getInteger(input[numberSymbol + 1]));
+                break;
+            case "-":
+                CalculationMath.subtraction(Integer.getInteger(input[numberSymbol - 1])
+                        , Integer.getInteger(input[numberSymbol + 1]));
+                break;
+            case "/":
+                CalculationMath.division(Integer.getInteger(input[numberSymbol - 1])
+                        , Integer.getInteger(input[numberSymbol + 1]));
+                break;
+            case "*":
+                CalculationMath.multiplication(Integer.getInteger(input[numberSymbol - 1])
+                        , Integer.getInteger(input[numberSymbol + 1]));
+                break;
         }
     }
 }
