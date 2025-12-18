@@ -19,7 +19,7 @@ public class AnalyzerInput {
     public static boolean hasMathSymbols(String input) {
         return input.contains("[+-/*]");
     }
-
+//
     public static String nextMathSymbolInBracket(String input) {
         String partResult = "";
         while (hasMathSymbols(input)) {
