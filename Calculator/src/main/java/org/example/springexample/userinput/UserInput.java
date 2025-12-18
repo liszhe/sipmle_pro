@@ -1,6 +1,5 @@
 package org.example.springexample.userinput;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 import static org.example.springexample.userinput.AnalyzerInput.*;
@@ -12,12 +11,13 @@ public class UserInput {
     }
 
     public static double analyzeInput(String userInput) {
-        String input = Arrays.toString(userInput.replace(" ", "").split(""));
+        String input = userInput.replaceAll(" ", "");
         double result = 0;
-        if (checkIsBracket(userInput)) {
-            int firstIdBracket = findIdFirstOpenBracket(userInput);
-            int lastIdBracket = findIdLastCloseBracket(userInput);
-            result += nextMathSymbolInBracket(input, firstIdBracket, lastIdBracket);
+        if (hasBracket(input)) {
+            int firstIdBracket = findIdOpenBracket(input);
+            int lastIdBracket = findIdCloseBracket(input);
+            String bracketMath = input.substring(firstIdBracket, lastIdBracket + 1);
+            result += Double.parseDouble(nextMathSymbolInBracket(bracketMath));
 //            if (!AnalyzerInput.isLastSymbol(inputArray.length, lastIdBracket)) {
 //                nextMathSymbol(inputArray, inputArray.length, lastIdBracket);
 //            }
