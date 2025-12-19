@@ -1,6 +1,6 @@
 package org.example.springexample.calculationmethods;
 
-import org.example.springexample.calculationexeptions.CalculationExceptions;
+import org.example.springexample.calculationexeptions.CalculationControl;
 
 public class CalculationMath {
 
@@ -17,7 +17,7 @@ public class CalculationMath {
     }
 
     public static double division(float firstNumber, float secondNumber) {
-        CalculationExceptions.checkDivisionSecondNumber(secondNumber);
+        CalculationControl.checkDivisionSecondNumber(secondNumber);
         return firstNumber / secondNumber;
     }
 

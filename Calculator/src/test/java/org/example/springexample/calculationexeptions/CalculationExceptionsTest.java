@@ -10,7 +10,7 @@ class CalculationExceptionsTest {
     @Test
     @DisplayName("Test check division by zero")
     public void testCheckDivisionSecondNumber() {
-        assertThrows(ArithmeticException.class, () -> CalculationExceptions.checkDivisionSecondNumber(0));
+        assertThrows(ArithmeticException.class, () -> CalculationControl.checkDivisionSecondNumber(0));
     }
 
 }

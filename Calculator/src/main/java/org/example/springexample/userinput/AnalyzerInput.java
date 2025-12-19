@@ -2,6 +2,8 @@ package org.example.springexample.userinput;
 
 import org.example.springexample.calculationmethods.CalculationMath;
 
+import java.util.Arrays;
+
 public class AnalyzerInput {
 
     public static boolean hasBracket(String input) {
@@ -17,31 +19,33 @@ public class AnalyzerInput {
     }
 
     public static boolean hasMathSymbols(String input) {
-        return input.contains("[+-/*]");
+        return input.contains("+") || input.contains("-") ||
+                input.contains("*") || input.contains("/");
     }
 //
     public static String nextMathSymbolInBracket(String input) {
+        String expression = input.replaceAll("[()]", "");
         String partResult = "";
+        int opIndex = -1;
+        char operator = ' ';
+
         while (hasMathSymbols(input)) {
-            if (CalculationMath.hasMarkMultiplication(input)) {
+            if (CalculationMath.hasMarkMultiplication(expression) || CalculationMath.hasMarkDivision(expression)) {
+
+                if (CalculationMath.hasMarkMultiplication(expression)) {
+                    int multiplyIndex = expression.indexOf('*');
+                }
+                else if(CalculationMath.hasMarkSummation(expression)) {
+                    int divideIndex = expression.indexOf('/');
+                }
+
                 partResult = Double.toString(CalculationMath.multiplication(
                         Long.parseLong(input.substring(input.indexOf('*') - 1, input.indexOf('*'))),
                         Long.parseLong(input.substring(input.indexOf('*') + 1, input.indexOf('*') + 2))
                 ));
                 input = input.replaceFirst("\\*", partResult);
                 input = input.substring(0, input.indexOf(partResult) - 2)
-                        + input.substring(input.indexOf(partResult));
-//            } else if (CalculationMath.hasMarkDivision(input)) {
-//                result += CalculationMath.division(Long.parseLong(input.substring(input.indexOf('/') - 1, input.indexOf('*'))),
-//                        Long.parseLong(input.substring(input.indexOf('/') + 1, input.indexOf('/') + 2)));
-//            } else if (CalculationMath.hasMarkSummation(input)) {
-//                result += CalculationMath.subtraction(Long.parseLong(input.substring(input.indexOf('-') - 1, input.indexOf('*'))),
-//                        Long.parseLong(input.substring(input.indexOf('-') + 1, input.indexOf('-') + 2)));
-//            } else if (CalculationMath.hasMarkSubtraction(input)) {
-//                result += CalculationMath.summation(Long.parseLong(input.substring(input.indexOf('+') - 1, input.indexOf('*'))),
-//                        Long.parseLong(input.substring(input.indexOf('+') + 1, input.indexOf('+') + 2)));
-//
-//            }
+                        + input.substring(input.indexOf(partResult), input.indexOf(partResult) + 1);
             }
 
         }
