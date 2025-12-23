@@ -10,20 +10,20 @@ public class UserInput {
         System.out.println(analyzeInput(scanner.nextLine()));
     }
 
-    public static double analyzeInput(String userInput) {
+    public static String analyzeInput(String userInput) {
         String input = userInput.replaceAll(" ", "");
         double result = 0;
-        if (hasBracket(input)) {
+        while (hasBracket(input)) {
             int firstIdBracket = findIdOpenBracket(input);
             int lastIdBracket = findIdCloseBracket(input);
             String bracketMath = input.substring(firstIdBracket, lastIdBracket + 1);
-            result += Double.parseDouble(nextMathSymbolInBracket(bracketMath));
-//            if (!AnalyzerInput.isLastSymbol(inputArray.length, lastIdBracket)) {
-//                nextMathSymbol(inputArray, inputArray.length, lastIdBracket);
-//            }
+            result = Double.parseDouble(resultBracket(bracketMath));
+            input = input.substring(0, firstIdBracket) + result + input.substring(lastIdBracket + 1);
         }
-
-        return result;
+        if (hasMathSymbols(input)) {
+            result += Double.parseDouble(resultMath(input));
+        }
+        return input;
     }
 
 
