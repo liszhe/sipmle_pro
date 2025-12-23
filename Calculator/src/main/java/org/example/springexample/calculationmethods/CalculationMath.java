@@ -4,16 +4,16 @@ import org.example.springexample.calculationexeptions.CalculationControl;
 
 public class CalculationMath {
 
-    public static double summation(long firstNumber, long secondNumber) {
-        return Math.addExact(firstNumber, secondNumber);
+    public static double summation(double firstNumber, double secondNumber) {
+        return firstNumber + secondNumber;
     }
 
-    public static double subtraction(long firstNumber, long secondNumber) {
-        return Math.subtractExact(firstNumber, secondNumber);
+    public static double subtraction(double firstNumber, double secondNumber) {
+        return firstNumber - secondNumber;
     }
 
-    public static double multiplication(long firstNumber, long secondNumber) {
-        return Math.multiplyExact(firstNumber, secondNumber);
+    public static double multiplication(double firstNumber, double secondNumber) {
+        return firstNumber * secondNumber;
     }
 
     public static double division(float firstNumber, float secondNumber) {
@@ -34,6 +34,6 @@ public class CalculationMath {
     }
 
     public static boolean hasMarkDivision(String input){
-        return input.contains("+");
+        return input.contains("/");
     }
 }
