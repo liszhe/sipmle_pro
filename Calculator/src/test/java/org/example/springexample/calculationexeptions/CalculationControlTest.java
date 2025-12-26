@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CalculationExceptionsTest {
+class CalculationControlTest {
 
     @Test
     @DisplayName("Test check division by zero")

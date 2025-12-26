@@ -16,24 +16,24 @@ public class CalculationMath {
         return firstNumber * secondNumber;
     }
 
-    public static double division(float firstNumber, float secondNumber) {
-        CalculationControl.checkDivisionSecondNumber(secondNumber);
+    public static double division(double firstNumber, double secondNumber) {
+        CalculationControl.checkDivisionSecondNumber((float) secondNumber);
         return firstNumber / secondNumber;
     }
 
-    public static boolean hasMarkSummation(String input){
+    public static boolean hasOperatorSummation(String input){
         return input.contains("+");
     }
 
-    public static boolean hasMarkSubtraction(String input){
+    public static boolean hasOperatorSubtraction(String input){
         return input.contains("-");
     }
 
-    public static boolean hasMarkMultiplication(String input){
+    public static boolean hasOperatorMultiplication(String input){
         return input.contains("*");
     }
 
-    public static boolean hasMarkDivision(String input){
+    public static boolean hasOperatorDivision(String input){
         return input.contains("/");
     }
 }

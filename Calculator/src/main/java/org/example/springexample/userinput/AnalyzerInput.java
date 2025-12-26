@@ -25,19 +25,18 @@ public class AnalyzerInput {
         String expression = input.replaceAll("[()]", "");
 
         while (hasMathSymbols(expression)) {
-            if (hasMarkMultiplication(expression) || hasMarkDivision(expression)) {
+            if (hasOperatorMultiplication(expression) || hasOperatorDivision(expression)) {
                 int operatorIndex = getIndexMultiplicationAndDivision(expression);
                 if (operatorIndex > 0) {
                     expression = getResultMultiplicationAndDivision(expression, operatorIndex);
                 }
-            } else if (hasMarkSummation(expression) || hasMarkSubtraction(expression)) {
+            } else if (hasOperatorSummation(expression) || hasOperatorSubtraction(expression)) {
                 int operatorIndex = getIndexSummationAndSubtraction(expression);
 
                 if (operatorIndex > 0) {
                     expression = getResultSummationAndSubtraction(expression, operatorIndex);
                 }
             }
-
         }
         return expression;
     }
@@ -46,12 +45,12 @@ public class AnalyzerInput {
         String expression = input;
 
         while (hasMathSymbols(expression)) {
-            if (hasMarkMultiplication(expression) || hasMarkDivision(expression)) {
+            if (hasOperatorMultiplication(expression) || hasOperatorDivision(expression)) {
                 int operatorIndex = getIndexMultiplicationAndDivision(expression);
                 if (operatorIndex > 0) {
                     expression = getResultMultiplicationAndDivision(expression, operatorIndex);
                 }
-            } else if (hasMarkSummation(expression) || hasMarkSubtraction(expression)) {
+            } else if (hasOperatorSummation(expression) || hasOperatorSubtraction(expression)) {
                 int operatorIndex = getIndexSummationAndSubtraction(expression);
 
                 if (operatorIndex > 0) {
@@ -66,39 +65,43 @@ public class AnalyzerInput {
     private static String getResultMultiplicationAndDivision(String expression, int operatorIndex) {
         String result;
         char operator = expression.charAt(operatorIndex);
-        int leftCloseIndex = operatorIndex - 1;
-        int rightCloseIndex = operatorIndex + 1;
-        while (leftCloseIndex > 0 && (Character.isDigit(expression.charAt(leftCloseIndex)) || expression.charAt(leftCloseIndex) == '.')) {
-            leftCloseIndex--;
+        int leftStart = operatorIndex - 1;
+        int rightEnd = operatorIndex + 1;
+
+        while (leftStart >= 0 && (Character.isDigit(expression.charAt(leftStart)) || expression.charAt(leftStart) == '.')) {
+            leftStart--;
         }
-        while (rightCloseIndex < expression.length() && (Character.isDigit(expression.charAt(rightCloseIndex)) || expression.charAt(leftCloseIndex) == '.')) {
-            rightCloseIndex++;
+        leftStart++;
+        while (rightEnd < expression.length() && (Character.isDigit(expression.charAt(rightEnd)) || expression.charAt(rightEnd) == '.')) {
+            rightEnd++;
         }
-        result = String.valueOf(operator == '*' ?
-                multiplication(Double.parseDouble(expression.substring(leftCloseIndex, operatorIndex))
-                        , Double.parseDouble(expression.substring(operatorIndex + 1, rightCloseIndex))) :
-                division(Float.parseFloat(expression.substring(leftCloseIndex, operatorIndex)),
-                        Float.parseFloat(expression.substring(operatorIndex + 1, rightCloseIndex))));
-        return expression.substring(0, leftCloseIndex) + result + expression.substring(rightCloseIndex);
+
+        double firstNumber = Double.parseDouble(expression.substring(leftStart, operatorIndex));
+        double secondNumber = Double.parseDouble(expression.substring(operatorIndex + 1, rightEnd));
+
+        result = String.valueOf(operator == '*' ? multiplication(firstNumber, secondNumber) : division(firstNumber, secondNumber));
+        return expression.substring(0, leftStart) + result + expression.substring(rightEnd);
     }
 
     private static String getResultSummationAndSubtraction(String expression, int operatorIndex) {
         String result;
         char operator = expression.charAt(operatorIndex);
-        int leftCloseIndex = operatorIndex - 1;
-        int rightCloseIndex = operatorIndex + 1;
-        while (leftCloseIndex > 0 && (Character.isDigit(expression.charAt(leftCloseIndex)) || expression.charAt(leftCloseIndex) == '.')) {
-            leftCloseIndex--;
+        int leftStart = operatorIndex - 1;
+        int rightEnd = operatorIndex + 1;
+
+        while (leftStart >= 0 && (Character.isDigit(expression.charAt(leftStart)) || expression.charAt(leftStart) == '.')) {
+            leftStart--;
         }
-        while (rightCloseIndex < expression.length() && (Character.isDigit(expression.charAt(rightCloseIndex)) || expression.charAt(leftCloseIndex) == '.')) {
-            rightCloseIndex++;
+        leftStart++;
+        while (rightEnd < expression.length() && (Character.isDigit(expression.charAt(rightEnd)) || expression.charAt(rightEnd) == '.')) {
+            rightEnd++;
         }
-        result = String.valueOf(operator == '+' ?
-                summation(Double.parseDouble(expression.substring(leftCloseIndex, operatorIndex))
-                        , Double.parseDouble(expression.substring(operatorIndex + 1, rightCloseIndex))) :
-                subtraction(Double.parseDouble(expression.substring(leftCloseIndex, operatorIndex)),
-                        Double.parseDouble(expression.substring(operatorIndex + 1, rightCloseIndex))));
-        return expression.substring(0, leftCloseIndex) + result + expression.substring(rightCloseIndex);
+
+        double firstNumber = Double.parseDouble(expression.substring(leftStart, operatorIndex));
+        double secondNumber = Double.parseDouble(expression.substring(operatorIndex + 1, rightEnd));
+
+        result = String.valueOf(operator == '+' ? summation(firstNumber, secondNumber) : subtraction(firstNumber, secondNumber));
+        return expression.substring(0, leftStart) + result + expression.substring(rightEnd);
     }
 
     private static int getIndexMultiplicationAndDivision(String expression) {
