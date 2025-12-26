@@ -13,7 +13,7 @@ public class UserInput {
     public static String analyzeInput(String userInput) {
         String input = userInput.replaceAll(" ", "");
         double result = 0;
-        while(hasMathSymbols(input)) {
+        while(hasMathOperator(input)) {
             if (hasBracket(input)) {
                 int firstIdBracket = findIdOpenBracket(input);
                 int lastIdBracket = findIdCloseBracket(input);
