@@ -2,12 +2,25 @@ package org.example.practiceexample;
 
 import java.util.HashMap;
 
-import static org.example.practiceexample.User.getInput;
-
 public class ToDoList {
-        private HashMap<String, Boolean> toDoList = new HashMap<>();
+        private static HashMap<String, Boolean> toDoList = new HashMap<>();
 
-        public void createTask(){
-            toDoList.put(getInput(), false);
+        public static void createTask(String task){
+            toDoList.put(task, false);
+            System.out.println("Запись создана.");
+        }
+
+        public static boolean hasTask(String task){
+            return toDoList.containsKey(task);
+        }
+
+        public static void updateTask(String task){
+            if(hasTask(task)){
+                toDoList.put(task, true);
+                System.out.println("Запись обновлена");
+            }
+            else {
+                System.out.println("Запись не найдена");
+            }
         }
 }
