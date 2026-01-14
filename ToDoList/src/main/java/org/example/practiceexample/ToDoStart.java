@@ -10,6 +10,7 @@ public class ToDoStart {
                 "2) Проверить\n" +
                 "3) Обновить\n" +
                 "4) Выход");
-        userChoice(getInput());
+        String userInput = getInput();
+        userChoice(userInput);
     }
 }
