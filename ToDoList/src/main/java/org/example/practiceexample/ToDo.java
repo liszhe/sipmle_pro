@@ -13,14 +13,19 @@ public class ToDo {
                     System.out.println("Напишите задание");
                     task = getInput();
                     createTask(task);
+                    break;
                 case "Проверить":
                     System.out.println("Напишите задание");
                     task = getInput();
                     hasTask(task);
+                    break;
                 case "Обновить":
                     System.out.println("Напишите задание");
                     task = getInput();
-                   updateTask(task);
+                    updateTask(task);
+                    break;
+                case "Записать файл":
+                    writeTaskInFile();
             }
         }
     }
