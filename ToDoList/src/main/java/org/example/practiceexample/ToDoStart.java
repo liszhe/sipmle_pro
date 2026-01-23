@@ -9,8 +9,8 @@ public class ToDoStart {
                 "1) Добавить\n" +
                 "2) Проверить\n" +
                 "3) Обновить\n" +
-                "4) Выход");
-        String userInput = getInput();
-        userChoice(userInput);
+                "4) Записать файл\n" +
+                "5) Выход");
+        userChoice();
     }
 }

@@ -5,9 +5,9 @@ import static org.example.practiceexample.User.getInput;
 
 public class ToDo {
     private static String task = "";
-    public static void userChoice(String input){
+    public static void userChoice(){
+        String input = getInput();
         while (!input.equals("Выход")){
-            input = getInput();
             switch (input){
                 case "Добавить":
                     System.out.println("Напишите задание");
@@ -17,7 +17,11 @@ public class ToDo {
                 case "Проверить":
                     System.out.println("Напишите задание");
                     task = getInput();
-                    hasTask(task);
+                    if(hasTask(task)){
+                        System.out.println("Запись создана");
+                    }else {
+                        System.out.println("Записи нет");
+                    }
                     break;
                 case "Обновить":
                     System.out.println("Напишите задание");
@@ -26,7 +30,9 @@ public class ToDo {
                     break;
                 case "Записать файл":
                     writeTaskInFile();
+                    break;
             }
+            input = getInput();
         }
     }
 }
